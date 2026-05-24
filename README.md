@@ -20,10 +20,3 @@ A responsive and user-friendly To-Do List web application developed using HTML, 
 - CSS3
 - JavaScript
 
----
-
-## Getting Started
-
-1. Clone the repository
-```bash
-git clone <your-repository-link>
