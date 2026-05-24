@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My To-Do List</title>
+    <!-- Fonts & Icons -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- Loading Screen -->
+    <div class="app-preloader" id="preloader" aria-hidden="true">
+        <div class="preloader-core">
+            <div class="quantum-spinner"></div>
+            <span class="loading-matrix-text">LOADING YOUR LIST...</span>
+        </div>
+    </div>
+
+    <!-- Ambient Glow Background Circles -->
+    <div class="orbs-container">
+        <div class="glow-orb orb-primary"></div>
+        <div class="glow-orb orb-secondary"></div>
+    </div>
+
+    <!-- Main Application Box -->
+    <div class="app-workspace">
+
+        <!-- Sidebar Navigation Panel -->
+        <aside class="app-sidebar">
+            <div class="brand-wrapper">
+                <div class="brand-geometry">
+                    <i class="fa-solid fa-check-double"></i>
+                </div>
+                <div class="brand-meta">
+                    <h2>TaskFlow</h2>
+                    <span class="sub-version">Daily Organizer</span>
+                </div>
+            </div>
+
+            <nav class="filter-matrix" role="tablist" aria-label="Task Filters">
+                <button class="matrix-btn active" data-filter="all" role="tab" aria-selected="true">
+                    <div class="btn-inner">
+                        <i class="fa-solid fa-list"></i> <span>All Tasks</span>
+                    </div>
+                    <span class="badge-count" id="count-all">0</span>
+                </button>
+                <button class="matrix-btn" data-filter="pending" role="tab" aria-selected="false">
+                    <div class="btn-inner">
+                        <i class="fa-regular fa-circle"></i> <span>To Do</span>
+                    </div>
+                    <span class="badge-count" id="count-pending">0</span>
+                </button>
+                <button class="matrix-btn" data-filter="completed" role="tab" aria-selected="false">
+                    <div class="btn-inner">
+                        <i class="fa-regular fa-circle-check"></i> <span>Done</span>
+                    </div>
+                    <span class="badge-count" id="count-completed">0</span>
+                </button>
+            </nav>
+
+            <div class="attribution-block">
+                <p class="developer-tag">Designed by Rahul Jena</p>
+            </div>
+        </aside>
+
+        <!-- Main Content Viewport -->
+        <main class="viewport-main">
+            <!-- Header Section -->
+            <header class="workspace-header">
+                <div class="header-identity">
+                    <h1>My Workspace</h1>
+                    <p class="header-date" id="live-date">Today</p>
+                </div>
+
+                <!-- Progress Circular Tracker -->
+                <div class="analytics-card">
+                    <div class="analytics-progress-track">
+                        <svg class="progress-ring" width="44" height="44">
+                            <circle class="progress-ring-bg" stroke="rgba(107, 33, 168, 0.08)" stroke-width="3.5"
+                                fill="transparent" r="18" cx="22" cy="22" />
+                            <circle class="progress-ring-bar" id="progress-circle" stroke="url(#purple-gradient)"
+                                stroke-width="3.5" fill="transparent" r="18" cx="22" cy="22" />
+                            <defs>
+                                <linearGradient id="purple-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                                    <stop offset="0%" stop-color="#7C3AED" />
+                                    <stop offset="100%" stop-color="#C084FC" />
+                                </linearGradient>
+                            </defs>
+                        </svg>
+                        <span class="progress-percentage-text" id="progress-percent">0%</span>
+                    </div>
+                    <div class="analytics-meta">
+                        <span class="analytics-label">Progress</span>
+                        <span class="analytics-numeric" id="task-counter-string">0 / 0 Completed</span>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Task Input Bar -->
+            <section class="control-console">
+                <form id="action-dispatch-form" class="console-form">
+                    <div class="console-input-group">
+                        <i class="fa-solid fa-pen console-icon"></i>
+                        <input type="text" id="target-input-field" placeholder="What do you need to do today?..."
+                            autocomplete="off" required>
+                    </div>
+                    <button type="submit" class="console-submit-btn" aria-label="Add task">
+                        <span>Add Task</span>
+                        <i class="fa-solid fa-plus"></i>
+                    </button>
+                </form>
+            </section>
+
+            <!-- Task Container List -->
+            <section class="stream-container">
+                <!-- Empty State (Shows when there are no tasks) -->
+                <div class="empty-vector-frame" id="empty-state-frame">
+                    <div class="vector-backdrop">
+                        <i class="fa-regular fa-face-smile"></i>
+                    </div>
+                    <h3>Your list is completely clear!</h3>
+                    <p>Type a task in the box above to start organizing your day.</p>
+                </div>
+
+                <!-- Dynamic Task List Elements -->
+                <ul class="task-stream-render-node" id="render-target-list"></ul>
+            </section>
+        </main>
+    </div>
+
+    <!-- Scroll Back To Top Button -->
+    <button class="macro-fab" id="scroll-macro-fab" title="Go to top" aria-label="Scroll to top">
+        <i class="fa-solid fa-arrow-up"></i>
+    </button>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
